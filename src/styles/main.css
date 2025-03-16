@@ -1,0 +1,256 @@
+/* 主样式文件 */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+}
+
+#root {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* 游戏UI样式 */
+.game-ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.health-bar {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    width: 200px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.health-fill {
+    height: 100%;
+    background-color: #ff3333;
+    transition: width 0.3s ease;
+}
+
+.ammo-counter {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.score-display {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 20px;
+    text-align: center;
+    line-height: 20px;
+    pointer-events: none;
+}
+
+/* 游戏菜单样式 */
+.game-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 20;
+}
+
+.menu-title {
+    color: #fff;
+    font-size: 48px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.menu-button {
+    background-color: #ff3333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    pointer-events: auto;
+}
+
+.menu-button:hover {
+    background-color: #ff6666;
+    transform: scale(1.05);
+}
+
+/* 游戏结束样式 */
+.game-over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 20;
+}
+
+.game-over-title {
+    color: #ff3333;
+    font-size: 64px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.final-score {
+    color: #fff;
+    font-size: 36px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* 武器切换UI */
+.weapon-selector {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.weapon-item {
+    width: 60px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid #fff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 18px;
+}
+
+.weapon-item.active {
+    background-color: rgba(255, 51, 51, 0.7);
+    border-color: #ff3333;
+}
+
+/* 伤害指示器 */
+.damage-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    border: 0px solid rgba(255, 0, 0, 0.5);
+    box-sizing: border-box;
+    transition: border-width 0.2s ease;
+}
+
+.damage-indicator.active {
+    border-width: 20px;
+}
+
+/* 击杀通知 */
+.kill-notification {
+    position: absolute;
+    top: 100px;
+    right: 30px;
+    color: #fff;
+    font-size: 18px;
+    background-color: rgba(255, 51, 51, 0.7);
+    padding: 10px 15px;
+    border-radius: 5px;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.3s ease;
+}
+
+.kill-notification.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 加载屏幕 */
+.loading-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+}
+
+.loading-bar-container {
+    width: 300px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.loading-bar {
+    height: 100%;
+    background-color: #ff3333;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.loading-text {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
+}

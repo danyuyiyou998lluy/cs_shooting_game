@@ -1,0 +1,682 @@
+/* 游戏HUD样式 */
+
+/* HUD容器 */
+.hud-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* 通用HUD元素样式 */
+.hud-element {
+    position: absolute;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 标签样式 */
+.hud-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    opacity: 0.8;
+}
+
+/* 生命值容器 */
+.health-container {
+    bottom: 20px;
+    left: 20px;
+    width: 200px;
+}
+
+/* 生命值条 */
+.health-bar {
+    width: 100%;
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+/* 生命值填充 */
+.health-fill {
+    height: 100%;
+    width: 100%;
+    background-color: #00ff00;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* 生命值文本 */
+.health-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* 护甲容器 */
+.armor-container {
+    bottom: 80px;
+    left: 20px;
+    width: 200px;
+}
+
+/* 护甲条 */
+.armor-bar {
+    width: 100%;
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+/* 护甲填充 */
+.armor-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #0088ff;
+    transition: width 0.3s ease;
+}
+
+/* 护甲文本 */
+.armor-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* 弹药容器 */
+.ammo-container {
+    bottom: 20px;
+    right: 20px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 当前弹药 */
+.current-ammo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+/* 弹药分隔符 */
+.ammo-separator {
+    font-size: 24px;
+    margin: 0 5px;
+    opacity: 0.7;
+}
+
+/* 最大弹药 */
+.max-ammo {
+    font-size: 24px;
+    opacity: 0.7;
+}
+
+/* 武器名称容器 */
+.weapon-name-container {
+    bottom: 80px;
+    right: 20px;
+    text-align: center;
+}
+
+/* 武器名称 */
+.weapon-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 分数容器 */
+.score-container {
+    top: 20px;
+    right: 20px;
+    text-align: center;
+}
+
+/* 分数文本 */
+.score-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* 击杀容器 */
+.kills-container {
+    top: 90px;
+    right: 20px;
+    text-align: center;
+}
+
+/* 击杀文本 */
+.kills-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* 目标容器 */
+.objectives-container {
+    top: 20px;
+    left: 20px;
+    width: 250px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* 目标标题 */
+.objectives-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 5px;
+}
+
+/* 目标列表 */
+.objectives-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* 目标项 */
+.objective-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.objective-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 已完成目标 */
+.objective-item.completed {
+    opacity: 0.7;
+    text-decoration: line-through;
+}
+
+/* 目标图标 */
+.objective-icon {
+    width: 16px;
+    height: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+}
+
+.objective-item.completed .objective-icon {
+    background-color: #00ff00;
+}
+
+/* 目标文本 */
+.objective-text {
+    flex: 1;
+    font-size: 14px;
+}
+
+/* 目标进度 */
+.objective-progress {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* 通知容器 */
+.notifications-container {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+/* 通知 */
+.notification {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    font-size: 14px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 通知类型 */
+.notification-info {
+    border-left: 3px solid #0088ff;
+}
+
+.notification-success {
+    border-left: 3px solid #00ff00;
+}
+
+.notification-warning {
+    border-left: 3px solid #ffcc00;
+}
+
+.notification-error {
+    border-left: 3px solid #ff0000;
+}
+
+/* 准星容器 */
+.crosshair-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+}
+
+/* 准星中心 */
+.crosshair-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+/* 准星线 */
+.crosshair-line {
+    position: absolute;
+    background-color: #ffffff;
+    transition: transform 0.1s ease;
+}
+
+/* 准星上线 */
+.crosshair-top {
+    width: 2px;
+    height: 10px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-15px);
+}
+
+/* 准星右线 */
+.crosshair-right {
+    width: 10px;
+    height: 2px;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) translateX(15px);
+}
+
+/* 准星下线 */
+.crosshair-bottom {
+    width: 2px;
+    height: 10px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+}
+
+/* 准星左线 */
+.crosshair-left {
+    width: 10px;
+    height: 2px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) translateX(-15px);
+}
+
+/* 命中标记容器 */
+.hit-marker-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+}
+
+/* 命中标记线 */
+.hit-marker-line {
+    position: absolute;
+    background-color: #ffffff;
+    width: 10px;
+    height: 2px;
+}
+
+/* 命中标记右上线 */
+.hit-marker-top-right {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* 命中标记左上线 */
+.hit-marker-top-left {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* 命中标记右下线 */
+.hit-marker-bottom-right {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(135deg);
+}
+
+/* 命中标记左下线 */
+.hit-marker-bottom-left {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+/* 爆头命中标记 */
+.hit-marker-container.headshot .hit-marker-line {
+    background-color: #ff0000;
+}
+
+/* 伤害指示器容器 */
+.damage-indicator-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url('../assets/images/damage_indicator.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+}
+
+/* 小地图容器 */
+.minimap-container {
+    top: 20px;
+    right: 20px;
+    width: 170px;
+    height: 190px;
+}
+
+/* 小地图标题 */
+.minimap-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+/* 小地图画布 */
+.minimap-canvas {
+    width: 150px;
+    height: 150px;
+    border-radius: 3px;
+}
+
+/* 武器轮盘容器 */
+.weapon-wheel-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    pointer-events: auto;
+}
+
+/* 武器轮盘背景 */
+.weapon-wheel-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* 武器轮盘项目 */
+.weapon-wheel-items {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* 武器轮盘槽位 */
+.weapon-wheel-slot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    margin: -30px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    opacity: 0.5;
+}
+
+.weapon-wheel-slot.active {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.weapon-wheel-slot.active:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.weapon-wheel-slot.selected {
+    background-color: rgba(0, 136, 255, 0.5);
+    border: 2px solid #0088ff;
+}
+
+/* 武器图标 */
+.weapon-icon {
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 武器标签 */
+.weapon-label {
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: center;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 武器轮盘中心 */
+.weapon-wheel-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* 游戏结束容器 */
+.game-over-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+}
+
+/* 游戏结束标题 */
+.game-over-title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+/* 游戏结束统计 */
+.game-over-stats {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 30px;
+    width: 300px;
+}
+
+/* 统计行 */
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.stat-row:last-child {
+    margin-bottom: 0;
+}
+
+/* 统计标签 */
+.stat-label {
+    opacity: 0.8;
+}
+
+/* 统计值 */
+.stat-value {
+    font-weight: bold;
+}
+
+/* 游戏结束按钮 */
+.game-over-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+/* 游戏按钮 */
+.game-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    pointer-events: auto;
+}
+
+.game-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #ffffff;
+}
+
+.game-button:active {
+    transform: scale(0.95);
+}
+
+/* 重新开始按钮 */
+.restart-button {
+    background-color: rgba(0, 136, 255, 0.3);
+    border-color: #0088ff;
+}
+
+.restart-button:hover {
+    background-color: rgba(0, 136, 255, 0.5);
+}
+
+/* 暂停菜单容器 */
+.pause-menu-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+}
+
+/* 暂停菜单标题 */
+.pause-menu-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* 暂停菜单按钮 */
+.pause-menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 250px;
+}
+
+/* 继续游戏按钮 */
+.resume-button {
+    background-color: rgba(0, 255, 0, 0.3);
+    border-color: #00ff00;
+}
+
+.resume-button:hover {
+    background-color: rgba(0, 255, 0, 0.5);
+}
+
+/* 选项按钮 */
+.options-button {
+    background-color: rgba(255, 204, 0, 0.3);
+    border-color: #ffcc00;
+}
+
+.options-button:hover {
+    background-color: rgba(255, 204, 0, 0.5);
+}
